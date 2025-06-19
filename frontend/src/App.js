@@ -3,7 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import './App.css';
 
-const socket = io('http://localhost:3001');
+const socket = io('https://disaster-backend-20250619.onrender.com'); // Replace with your Render URL
 
 function App() {
   const [disasters, setDisasters] = useState([]);
@@ -20,7 +20,7 @@ function App() {
 
   const fetchDisasters = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3001/disasters');
+      const { data } = await axios.get('https://disaster-backend-20250619.onrender.com/disasters'); // Replace with your Render URL
       setDisasters(data);
     } catch (error) {
       console.error('Error fetching disasters:', error);
@@ -30,7 +30,7 @@ function App() {
   const createDisaster = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/disasters', {
+      await axios.post('https://disaster-backend-20250619.onrender.com/disasters', { // Replace with your Render URL
         ...form,
         tags: form.tags.split(',').map(tag => tag.trim())
       });
@@ -43,7 +43,7 @@ function App() {
   const submitReport = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/disasters/123e4567-e89b-12d3-a456-426614174000/verify-image', {
+      await axios.post('https://disaster-backend-20250619.onrender.com/disasters/123e4567-e89b-12d3-a456-426614174000/verify-image', { // Replace with your Render URL
         image_url: report.image_url
       });
       setReport({ content: '', image_url: '' });
